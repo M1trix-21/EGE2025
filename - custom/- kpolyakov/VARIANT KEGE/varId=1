@@ -1,0 +1,109 @@
+#2
+from itertools import *
+def f(x,y,w,z):return ((w <= y) <= x) or not z
+
+for a1,a2,a3,a4,a5,a6, a7 in product ([0,1] ,repeat = 7):
+    t = [(a1,a2, 1, a3),
+         (a4, 0, a5, a6),
+         (a7, 1, 0, 0)]
+    if len(t) == len(set(t)):
+        for i in permutations ('wxzy'):
+            if [f(**dict(zip(i,r))) for r in t] == [0,0,0]:
+                print('2= ', *i, sep ='')
+#5
+mx = 0
+for n in range(1, 13):
+    r = str(bin(n)[2::])
+    if r.count('1') % 2 == 0:
+        r = '10' + r
+    else:
+        r = '1' + r + '01'
+    int_r = int(r, 2)
+    mx = max(int_r, mx)
+print('5=', mx)
+#6
+'''
+from turtle import *
+tracer(0)
+k = 10
+for i in range(9):
+    fd(12 * k)
+    rt(90)
+    fd(6 * k)
+    rt(90)
+up()
+fd(1 * k)
+rt(90)
+fd(3 * k)
+lt(90)
+down()
+for i in range(9):
+    fd(53 * k)
+    rt(90)
+    fd(75 * k)
+    rt(90)
+up()
+for x in range(-40,40):
+    for y in range(-40,40):
+        goto(x * k, y * k)
+        dot(3,'black')
+update()
+done()'''
+print('6= 33')
+from itertools import *
+item = product("0123456789AB", repeat =5)
+res = []
+for c in item:
+    if c[0] == '0':
+        continue
+    if list(c).count('7') > 1 or list(c).count('7') == 0:
+        continue
+    c8 = 0
+    for s in c:
+        if s > '8':
+            c8 += 1
+    if c8 >= 4:
+        continue
+    res.append(c)
+print('8=',len(res))
+#12
+s = '9' * 81
+while '33333'  in s or '999' in s:
+    if '33333' in s:
+        s = s.replace('33333','99',1)
+    else:
+        s = s.replace('999','3',1)
+print('12=', s)
+#13
+import ipaddress
+n = ipaddress.ip_network(f'172.16.168.0/255.255.248.0',False)
+k = 0
+for i in n:
+    ip = f'{i:b}'
+    if ip.count('1') % 5 != 0:
+        k += 1
+print('13=',k)
+#14
+def ss(n,b):
+    s = ''
+    while n > 0:
+        s += str(n % b)
+        n //= b
+    return s
+for x in range(60000,0,-1):
+    n = 3 ** 2000 + 3 ** 10 - x
+
+    s = ss(n,3)
+    if s.count('2') == 2000:
+        print('14=',x)
+        break
+#15
+def f(x,y,A):
+    return (x + y <= 30) or (y <= x + 2) or (y >= A)
+mx = 0
+for A in range(0, 1000):
+    if all(f(x, y, A) == 1 for x in range(1, 1000) for y in range(1, 1000)):
+        mx = max(mx, A)
+print(mx)
+#16
+print('16-', 2023*2022+2*2022)
